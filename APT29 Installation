@@ -1,0 +1,12 @@
+rule APT29_Installation {
+    meta:
+        description = "Detects APT29's custom malware installation"
+        author = "Gabrielle Perdomo IT462"
+        reference = "https://www.cisa.gov/sites/default/files/publications/AR-17-20045_Enhanced_Analysis_of_GRIZZLY_STEPPE_Activity.pdf"
+        created_date = "2023-10-17"
+    strings:
+        $malware_installation_1 = "InstallMalware.dll"
+        $malware_installation_2 = "BackdoorInstaller.exe"
+    condition:
+        any of ($malware_installation*)
+}
