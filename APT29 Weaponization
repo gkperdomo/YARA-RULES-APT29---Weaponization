@@ -7,6 +7,9 @@ rule APT29_Weaponization {
     strings:
         $weaponized_malware_1 = "EmbeddedPayload.exe"
         $weaponized_malware_2 = "WeaponizedDocument.dll"
+  hashes:
+	$file_hash_1 = "f94e5cc4e6f8c7f0b4c0dd25fc04f6a3"
+	$file_hash_2 = "a68bde5c6fc5e28f47ce1a5d4f5fcd47"
     condition:
         any of ($weaponized_malware*)
 }
