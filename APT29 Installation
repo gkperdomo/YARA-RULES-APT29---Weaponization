@@ -7,6 +7,9 @@ rule APT29_Installation {
     strings:
         $malware_installation_1 = "InstallMalware.dll"
         $malware_installation_2 = "BackdoorInstaller.exe"
+    hashes:
+	$file_hash_1 = "f9f897a8d08c1e1f6aa07f0763db381b"
+$file_hash_2 = "c31ea3ce71a7b9d84ff3edf2b40a7f8f"
     condition:
         any of ($malware_installation*)
 }
