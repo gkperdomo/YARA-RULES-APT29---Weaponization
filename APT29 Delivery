@@ -14,3 +14,4 @@ rule APT29_Delivery {
     condition:
         (any of ($phishing_subject*) or any of ($malicious_link*)) and (any of them in (file.md5))
 }
+
