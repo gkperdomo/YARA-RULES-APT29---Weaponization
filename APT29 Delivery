@@ -1,14 +1,16 @@
 rule APT29_Delivery {
     meta:
-        description = "Detects phishing emails and malicious links used for malware delivery by APT29"
-        author = "Gabrielle Perdomo IT462"
+        description = "Detects phishing emails, malicious links, and file hashes used for malware delivery by APT29"
+        author = "Gabrielle Perdomo IT462”
         created_date = "2023-10-17"
-        reference = "https://www.cisa.gov/sites/default/files/publications/AR-17-20045_Enhanced_Analysis_of_GRIZZLY_STEPPE_Activity.pdf"
     strings:
         $phishing_subject_1 = "Urgent: Important Document Attached"
         $phishing_subject_2 = "Your Invoice Payment Confirmation"
         $malicious_link_1 = "hxxp://malicious-site[.]com"
         $malicious_link_2 = "hxxp://exploit-delivery[.]net"
+    hashes:
+        $file_hash_1 = "87FB0C1E0DE46177390DE3EE18608B21"
+        $file_hash_2 = "277FF86501B98A4FF8C945AC4D4A7C53"
     condition:
-        any of ($phishing_subject*) or any of ($malicious_link*)
+        (any of ($phishing_subject*) or any of ($malicious_link*)) and (any of them in (file.md5))
 }
