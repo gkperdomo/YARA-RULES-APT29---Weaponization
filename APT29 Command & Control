@@ -1,12 +1,15 @@
 rule APT29_CommandControl {
     meta:
         description = "Detects APT29's command and control communication"
-        author = "Gabrielle Perdomo"
+        author = "Gabrielle Perdomo IT462"
         created_date = "2023-10-17"
-        reference = "https://www.cisa.gov/sites/default/files/publications/AR-17-20045_Enhanced_Analysis_of_GRIZZLY_STEPPE_Activity.pdf"
+        reference =  "https://www.cisa.gov/sites/default/files/publications/AR-17-20045_Enhanced_Analysis_of_GRIZZLY_STEPPE_Activity.pdf"
     strings:
         $cnc_communication_1 = "POST /v1/command"
         $cnc_communication_2 = "User-Agent: CustomC2Agent"
+    hashes: 
+	$file_hash_1 = "1a3c9f0c5a677e892b5274e62edbeebd"
+$file_hash_2 = "58972e41be158e6ab0fb39db1d75db19"
     condition:
         any of ($cnc_communication*)
 }
